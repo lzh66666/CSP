@@ -3,15 +3,48 @@
 using namespace std;
 
 int n,a,b;
- 
+long long sum;
+
+vector<pair<int, int> > u, v;
+
 int main(){
 	
 	cin >> n >> a >> b;
+	
+	for(int i = 0; i < a; i++) {
+		int x,y;
+		cin >> x >> y;
+		u.push_back({x,y});
+	}
+	
+	for(int i = 0; i < b; i++) {
+		int x,y;
+		cin >> x >> y;
+		v.push_back({x,y});
+	}
+	
+	int i = 0, j = 0;
+	
+	while(i < a && j < b) {
+		if(u[i].first == v[j].first) {
+			sum += u[i++].second*v[j++].second;
+		}else if(u[i].first > v[j].first) {
+			j++;
+		}else {
+			i++;
+		}
+	}
+	
+	cout << sum << endl;
+	
 	return 0;
 }
 
-/*
-ÑùÀýÊäÈë
+/*=================================================================
+ 
+ é¢˜ç›®è§å›¾ 
+ 
+æ ·ä¾‹è¾“å…¥
 10 3 4
 4 5
 7 -3
@@ -22,7 +55,6 @@ int main(){
 7 40
 
 
-ÑùÀýÊä³ö
+æ ·ä¾‹è¾“å‡º
 -20 
-
-*/
+=================================================================*/
